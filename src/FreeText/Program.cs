@@ -11,7 +11,6 @@ namespace FreeText {
         static void ManipulatePdf() {
 
             using (var ms = new MemoryStream()) {
-
                 var pdf = "resources/Project.pdf";
                 var reader = new iTextSharp.text.pdf.PdfReader(pdf);
                 var stamper = new iTextSharp.text.pdf.PdfStamper(reader, ms);
@@ -29,10 +28,10 @@ namespace FreeText {
 
                 annot.BorderStyle = new iTextSharp.text.pdf.PdfBorderDictionary(0, 0);
                 stamper.AddAnnotation(annot, 1);
+                stamper.Close();
 
                 var output = ms.ToArray();
                 System.IO.File.WriteAllBytes(".output/Hello.pdf", output);
-
             }
         }
     }
